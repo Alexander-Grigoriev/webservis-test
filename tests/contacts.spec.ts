@@ -1,9 +1,14 @@
 import { test, expect } from '@playwright/test';
+import { BasePage } from './pages/BasePage';
 
 test.describe('Contacts page – webservis.net', () => {
-    test('should load Contacts page and show heading', async ({ page }) => {
-        await page.goto('/contacts/');
+    test('should load Contacts page and show heading', { tag: '@smoke' }, async ({ page }) => {
+        const basePage = new BasePage(page);
 
+        await page.goto('/');
+        await basePage.header.goTo('Contacts');
+
+        await expect(page).toHaveURL(/\/contacts\/?$/);
         await expect(
             page.getByRole('heading', { name: /let’s build something great together/i })
         ).toBeVisible();

@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { BasePage } from './pages/BasePage';
 
 test.describe('Home page – webservis.net', () => {
-  test('should load home page and show main headline', async ({ page }) => {
+  test('should load home page and show main headline', { tag: '@smoke' }, async ({ page }) => {
     await page.goto('/');
 
     await expect(
@@ -9,20 +10,10 @@ test.describe('Home page – webservis.net', () => {
     ).toBeVisible();
   });
 
-  test('should display main navigation links', async ({ page }) => {
+  test('should display main navigation links', { tag: '@smoke' }, async ({ page }) => {
+    const basePage = new BasePage(page);
+
     await page.goto('/');
-
-    // Target only visible menu items (avoids hidden responsive menu duplicates)
-    const nav = page.locator('header');
-
-    const home = nav.locator('a.menu-link:visible', { hasText: 'Home' });
-    const projects = nav.locator('a.menu-link:visible', { hasText: 'Projects' });
-    const services = nav.locator('a.menu-link:visible', { hasText: 'Services' });
-    const contacts = nav.locator('a.menu-link:visible', { hasText: 'Contacts' });
-
-    await expect(home).toBeVisible();
-    await expect(projects).toBeVisible();
-    await expect(services).toBeVisible();
-    await expect(contacts).toBeVisible();
+    await basePage.header.expectVisible();
   });
 });
