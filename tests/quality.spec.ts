@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Home should not log severe console errors @smoke', async ({ page }) => {
+test('Home should not log severe console errors', { tag: '@smoke' }, async ({ page }) => {
     const errors: string[] = [];
 
     page.on('console', msg => {

@@ -33,7 +33,7 @@ test.describe('Contacts page – webservis.net', () => {
         await expect(emailLink).toHaveAttribute('href', /mailto:info@webservis\.net/i);
     });
 
-    test('should validate required fields before sending @smoke', async ({ page }) => {
+    test('should validate required fields before sending', { tag: '@smoke' }, async ({ page }) => {
         await page.goto('/contacts/');
 
         // Try submit without filling anything

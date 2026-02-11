@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { BasePage } from './pages/BasePage';
 
 test.describe('Header navigation – webservis.net', () => {
-  test('Projects link routes correctly @smoke', async ({ page }) => {
+  test('Projects link routes correctly', { tag: '@smoke' }, async ({ page }) => {
     const basePage = new BasePage(page);
 
     await page.goto('/');
@@ -11,7 +11,7 @@ test.describe('Header navigation – webservis.net', () => {
     await expect(page).toHaveURL(/\/projects\/?$/);
   });
 
-  test('Services link routes correctly @smoke', async ({ page }) => {
+  test('Services link routes correctly', { tag: '@smoke' }, async ({ page }) => {
     const basePage = new BasePage(page);
 
     await page.goto('/');
@@ -20,7 +20,7 @@ test.describe('Header navigation – webservis.net', () => {
     await expect(page).toHaveURL(/\/services\/?$/);
   });
 
-  test('Contacts link routes correctly @smoke', async ({ page }) => {
+  test('Contacts link routes correctly', { tag: '@smoke' }, async ({ page }) => {
     const basePage = new BasePage(page);
 
     await page.goto('/');
